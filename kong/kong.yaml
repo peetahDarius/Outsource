@@ -1,0 +1,27 @@
+_format_version: "3.0"
+services:
+  - name: echo-server
+    url: http://192.168.40.107:6969 # Replace with your actual upstream service URL
+    routes:
+      - name: echo-server-route
+        paths:
+          - /echo
+        plugins:
+          - name: jwt
+            config:
+              key_claim_name: iss # This tells Kong to use the "iss" claim to find the JWT credential
+consumers:
+  - username: keycloak
+    jwt_secrets:
+      - key: "http://localhost:8080/realms/myrealm"
+        rsa_public_key: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuqIXUjzs3/sCkNGsoTyb
+          QJTD+mS1kZv6BQudNA5pprWoQrs+flhTGvyrb+D3xV4Difyr81biYCW3XZ07xvLz
+          aUsaNTA8Hp16tWQ0tqdTAcfNxCmz+TgAQqNsAvSSiz9ghh2itUtZSPzazapKUdYr
+          mPDBAe01XWLnCsgRutMGSPc/WQtRusYHevjbjUUnAwMU5tgWko6QYG7IJmRuFCec
+          GLgiBpIgW/JeCvBvrn4lS+4grURN10dIhrIfhF1UtIRqiBaUQP1GgzbLYjcsi1jc
+          u9OdDbQwf7m62qs6QIZox5rvhzKi/Ea0fo2KnqifHoeg7QJPaB8fv9FXEdptLwI1w
+          wIDAQAB
+          -----END PUBLIC KEY-----
+        algorithm: RS256
