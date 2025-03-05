@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMapName }}
+data:
+  QUOTATION_DATABASE_USERNAME: postgres
+  QUOTATION_DATABASE_HOST: quotationdb
+  QUOTATION_DATABASE_PORT: "5432"
+  QUOTATION_DATABASE_NAME: quotation
+  RABBITMQ_HOST: rabbitmq
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_USER: admin
+  

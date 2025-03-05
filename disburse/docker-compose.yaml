@@ -1,0 +1,25 @@
+services:
+  disburse:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: peetahdarius/outsource-disburse
+    ports:
+      - 5000:5000
+    depends_on:
+      - disbursedb
+
+  disbursedb:
+    image: postgres:15
+    container_name: disbursedb
+    environment:
+      POSTGRES_DB: disburse
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: disbursepass
+    ports:
+      - "5432:5432"
+    volumes:
+      - disburse_data:/var/lib/postgresql/data
+
+volumes:
+  disburse_data:

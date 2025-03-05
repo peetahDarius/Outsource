@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMapName }}
+data:
+  EMAIL_DATABASE_USERNAME: postgres
+  EMAIL_DATABASE_HOST: emaildb
+  EMAIL_DATABASE_PORT: "5432"
+  EMAIL_DATABASE_NAME: email
+  RABBITMQ_HOST: rabbitmq
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_USER: admin
+  

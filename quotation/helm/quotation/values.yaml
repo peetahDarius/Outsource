@@ -1,0 +1,14 @@
+appName: quotation
+
+replicaCount: 1
+
+configMapName: quotation-config
+
+secretsName: quotation-secret
+
+image:
+  name: peetahdarius/outsource-quotation
+  tag: latest
+
+servicePort: 5000
+containerPort: 5000

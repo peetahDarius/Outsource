@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMapName }}
+data:
+  CLIENT_BACKEND_DATABASE_USERNAME: client-user
+  CLIENT_BACKEND_DATABASE_HOST: client-db
+  CLIENT_BACKEND_DATABASE_PORT: "3306"
+  CLIENT_BACKEND_DATABASE_NAME: clientdb
+  RABBITMQ_HOST: rabbitmq
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_USER: admin
+  

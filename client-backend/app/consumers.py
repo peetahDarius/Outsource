@@ -4,8 +4,9 @@ from pika.exchange_type import ExchangeType
 from .models import db, Client
 from app import create_app 
 from .producers import task_scheduled_queue
+from .config import Config
 
-connection_parameters = pika.ConnectionParameters("localhost")
+connection_parameters = Config.get_rabbitmq_connection_parameters()
 
 def on_process_client_message_received(ch, method, properties, body):
     data = json.loads(body)

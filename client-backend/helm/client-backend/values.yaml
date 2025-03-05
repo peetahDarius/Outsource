@@ -1,0 +1,14 @@
+appName: client-backend
+
+replicaCount: 1
+
+configMapName: client-backend-config
+
+secretsName: client-backend-secret
+
+image:
+  name: peetahdarius/outsource-client-backend
+  tag: latest
+
+servicePort: 5000
+containerPort: 5000

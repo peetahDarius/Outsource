@@ -1,0 +1,14 @@
+appName: c2b
+
+replicaCount: 1
+
+configMapName: c2b-config
+
+secretsName: c2b-secret
+
+image:
+  name: peetahdarius/outsource-c2b
+  tag: latest
+
+servicePort: 5000
+containerPort: 5000

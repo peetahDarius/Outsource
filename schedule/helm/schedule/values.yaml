@@ -1,0 +1,14 @@
+appName: schedule
+
+replicaCount: 1
+
+configMapName: schedule-config
+
+secretsName: schedule-secret
+
+image:
+  name: peetahdarius/outsource-schedule
+  tag: latest
+
+servicePort: 5000
+containerPort: 5000

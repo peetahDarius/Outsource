@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMapName }}
+data:
+  C2B_DATABASE_USERNAME: postgres
+  C2B_DATABASE_HOST: c2bdb
+  C2B_DATABASE_PORT: "5432"
+  C2B_DATABASE_NAME: c2b
+  RABBITMQ_HOST: rabbitmq
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_USER: admin
+  

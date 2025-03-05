@@ -1,0 +1,25 @@
+services:
+  b2c:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: peetahdarius/outsource-b2c
+    ports:
+      - 5000:5000
+    depends_on:
+      - b2cdb
+
+  b2cdb:
+    image: postgres:15
+    container_name: b2cdb
+    environment:
+      POSTGRES_DB: b2c
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: b2cpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - b2c_data:/var/lib/postgresql/data
+
+volumes:
+  b2c_data:

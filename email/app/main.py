@@ -1,9 +1,11 @@
 from typing import Optional
 from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, status, UploadFile, File
+
+from .config import get_credentials_from_db
 from .schemas import CredentialsSchema, DisplayCredentials, MailBody
 from .mailer import send_mail
-from .database import engine, db_dependency
-from .models import Credentials, Base
+from .database import engine, db_dependency, Base
+from .models import Credentials
 from fastapi.responses import JSONResponse
 
 app = FastAPI()
@@ -25,9 +27,12 @@ async def create_credentials(credentials: CredentialsSchema, db: db_dependency):
 
 
 @app.get("/credentials/", status_code=status.HTTP_200_OK, response_model=DisplayCredentials)
-async def create_credentials(db: db_dependency):
-    existing_credentials = db.query(Credentials).filter(Credentials.custom_id == 1).first()
-    return existing_credentials
+async def get_credentials():
+    host, username, password, port = get_credentials_from_db()
+    if host is None:
+        raise HTTPException(status_code=404, detail="Credentials not found")
+    return {"host": host, "username": username, "password": password, "port": port}
+
 
 
 # @app.post("/send-email/", status_code=status.HTTP_200_OK)

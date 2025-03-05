@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMapName }}
+data:
+  TASK_DATABASE_USERNAME: postgres
+  TASK_DATABASE_HOST: taskdb
+  TASK_DATABASE_PORT: "5432"
+  TASK_DATABASE_NAME: task
+  RABBITMQ_HOST: rabbitmq
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_USER: admin
+  

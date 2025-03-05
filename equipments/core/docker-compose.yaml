@@ -1,0 +1,23 @@
+services:
+  equipments:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: peetahdarius/outsource-equipments
+    ports:
+      - 8000:8000
+
+  equipmentsdb:
+    image: postgres:15
+    container_name: equipmentsdb
+    environment:
+      POSTGRES_DB: equipments
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: equipments@pass#
+    ports:
+      - "5432:5432"
+    volumes:
+      - equipments_data:/var/lib/postgresql/data
+
+volumes:
+  equipments_data:

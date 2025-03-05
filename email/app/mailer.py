@@ -1,4 +1,4 @@
-from .config import HOST, PASSWORD, USERNAME, PORT
+from .config import get_credentials_from_db
 from ssl import create_default_context
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -8,6 +8,7 @@ from .schemas import MailBody
 
 
 def send_mail(data: dict |None = None, file_path: str | None = None):
+    HOST, PASSWORD, USERNAME, PORT = get_credentials_from_db()
     
     msg = MailBody(**data)
 

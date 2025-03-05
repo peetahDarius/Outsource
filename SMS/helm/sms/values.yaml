@@ -1,0 +1,14 @@
+appName: sms
+
+replicaCount: 1
+
+configMapName: sms-config
+
+secretsName: sms-secret
+
+image:
+  name: peetahdarius/outsource-sms
+  tag: latest
+
+servicePort: 5000
+containerPort: 5000

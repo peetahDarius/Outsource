@@ -1,4 +1,31 @@
+import os
+from dotenv import load_dotenv
+import pika
+
+load_dotenv()
+
+
 class Config:
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///c2b.db'
+    C2B_DATABASE_USERNAME = os.environ.get("C2B_DATABASE_USERNAME")
+    C2B_DATABASE_PASSWORD = os.environ.get("C2B_DATABASE_PASSWORD")
+    C2B_DATABASE_HOST = os.environ.get("C2B_DATABASE_HOST")
+    C2B_DATABASE_PORT = os.environ.get("C2B_DATABASE_PORT")
+    C2B_DATABASE_NAME = os.environ.get("C2B_DATABASE_NAME")
+
+    RABBITMQ_HOST = os.environ.get("RABBITMQ_HOST")
+    RABBITMQ_PORT = int(os.environ.get("RABBITMQ_PORT"))
+    RABBITMQ_USER = os.environ.get("RABBITMQ_DEFAULT_USER")
+    RABBITMQ_PASS = os.environ.get("RABBITMQ_DEFAULT_PASS")
+
+    SQLALCHEMY_DATABASE_URI = f'postgresql+psycopg2://{C2B_DATABASE_USERNAME}:{C2B_DATABASE_PASSWORD}@{C2B_DATABASE_HOST}:{C2B_DATABASE_PORT}/{C2B_DATABASE_NAME}?sslmode=disable'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = 'your_secret_key'
+    SECRET_KEY = os.environ.get("SECRET_KEY", "your_secret_key")
+    
+    @classmethod
+    def get_rabbitmq_connection_parameters(cls):
+        return pika.ConnectionParameters(
+            host=cls.RABBITMQ_HOST,
+            port=cls.RABBITMQ_PORT,
+            credentials=pika.PlainCredentials(cls.RABBITMQ_USER, cls.RABBITMQ_PASS)
+        )
+    

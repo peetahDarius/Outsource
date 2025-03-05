@@ -1,0 +1,14 @@
+appName: disburse
+
+replicaCount: 1
+
+configMapName: disburse-config
+
+secretsName: disburse-secret
+
+image:
+  name: peetahdarius/outsource-disburse
+  tag: latest
+
+servicePort: 5000
+containerPort: 5000

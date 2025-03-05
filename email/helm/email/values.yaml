@@ -1,0 +1,14 @@
+appName: email
+
+replicaCount: 1
+
+configMapName: email-config
+
+secretsName: email-secret
+
+image:
+  name: peetahdarius/outsource-email
+  tag: latest
+
+servicePort: 8000
+containerPort: 8000

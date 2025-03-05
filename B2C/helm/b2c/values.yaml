@@ -1,0 +1,14 @@
+appName: b2c
+
+replicaCount: 1
+
+configMapName: b2c-config
+
+secretsName: b2c-secret
+
+image:
+  name: peetahdarius/outsource-b2c
+  tag: latest
+
+servicePort: 5000
+containerPort: 5000

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMapName }}
+data:
+  SMS_DATABASE_USERNAME: postgres
+  SMS_DATABASE_HOST: smsdb
+  SMS_DATABASE_PORT: "5432"
+  SMS_DATABASE_NAME: sms
+  RABBITMQ_HOST: rabbitmq
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_USER: admin
+  

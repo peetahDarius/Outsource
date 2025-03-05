@@ -3,8 +3,9 @@ import pika
 from pika.exchange_type import ExchangeType
 from fastapi import BackgroundTasks
 from .mailer import send_mail
+from .config import Config
 
-connection_parameters = pika.ConnectionParameters("localhost")
+connection_parameters = Config.get_rabbitmq_connection_parameters()
 
 """ ============================= Task scheduled ========================================"""
 

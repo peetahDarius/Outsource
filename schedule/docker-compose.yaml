@@ -1,0 +1,25 @@
+services:
+  schedule:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: peetahdarius/outsource-schedule
+    ports:
+      - 5000:5000
+    depends_on:
+      - scheduledb
+
+  scheduledb:
+    image: postgres:15
+    container_name: scheduledb
+    environment:
+      POSTGRES_DB: schedule
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: schedulepass
+    ports:
+      - "5432:5432"
+    volumes:
+      - schedule_data:/var/lib/postgresql/data
+
+volumes:
+  schedule_data:

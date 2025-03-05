@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMapName }}
+data:
+  B2C_DATABASE_USERNAME: postgres
+  B2C_DATABASE_HOST: b2cdb
+  B2C_DATABASE_PORT: "5432"
+  B2C_DATABASE_NAME: b2c
+  RABBITMQ_HOST: rabbitmq
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_USER: admin
+  

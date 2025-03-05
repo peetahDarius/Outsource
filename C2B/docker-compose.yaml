@@ -1,0 +1,25 @@
+services:
+  c2b:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: peetahdarius/outsource-c2b
+    ports:
+      - 5000:5000
+    depends_on:
+      - c2bdb
+
+  c2bdb:
+    image: postgres:15
+    container_name: c2bdb
+    environment:
+      POSTGRES_DB: c2b
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: c2bpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - c2b_data:/var/lib/postgresql/data
+
+volumes:
+  c2b_data:

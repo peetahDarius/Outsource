@@ -1,0 +1,14 @@
+appName: task
+
+replicaCount: 1
+
+configMapName: task-config
+
+secretsName: task-secret
+
+image:
+  name: peetahdarius/outsource-task
+  tag: latest
+
+servicePort: 5000
+containerPort: 5000

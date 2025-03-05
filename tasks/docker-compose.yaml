@@ -1,0 +1,25 @@
+services:
+  task:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: peetahdarius/outsource-task
+    ports:
+      - 5000:5000
+    depends_on:
+      - taskdb
+
+  taskdb:
+    image: postgres:15
+    container_name: taskdb
+    environment:
+      POSTGRES_DB: task
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: taskpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - task_data:/var/lib/postgresql/data
+
+volumes:
+  task_data:

@@ -1,7 +1,8 @@
 import pika
 from pika.exchange_type import ExchangeType
-connection_parameters = pika.ConnectionParameters("localhost")
+from .config import Config
 
+connection_parameters = Config.get_rabbitmq_connection_parameters()
 
 def process_client_queue(message):
     with pika.BlockingConnection(connection_parameters) as connection:

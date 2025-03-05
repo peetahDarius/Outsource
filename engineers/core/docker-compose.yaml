@@ -1,0 +1,23 @@
+services:
+  engineers:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: peetahdarius/outsource-engineers
+    ports:
+      - 8000:8000
+
+  engineersdb:
+    image: postgres:15
+    container_name: engineersdb
+    environment:
+      POSTGRES_DB: engineers
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: engineerspass
+    ports:
+      - "5432:5432"
+    volumes:
+      - engineers_data:/var/lib/postgresql/data
+
+volumes:
+  engineers_data:

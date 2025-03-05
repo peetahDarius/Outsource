@@ -1,0 +1,25 @@
+services:
+  quotation:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: peetahdarius/outsource-quotation
+    ports:
+      - 5000:5000
+    depends_on:
+      - quotationdb
+
+  quotationdb:
+    image: postgres:15
+    container_name: quotationdb
+    environment:
+      POSTGRES_DB: quotation
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: quotationpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - quotation_data:/var/lib/postgresql/data
+
+volumes:
+  quotation_data:

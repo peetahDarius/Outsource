@@ -1,0 +1,23 @@
+services:
+  inventory:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: peetahdarius/outsource-inventory
+    ports:
+      - 8000:8000
+
+  inventorydb:
+    image: postgres:15
+    container_name: inventorydb
+    environment:
+      POSTGRES_DB: inventory
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: inventory@pass#
+    ports:
+      - "5432:5432"
+    volumes:
+      - inventory_data:/var/lib/postgresql/data
+
+volumes:
+  inventory_data:
